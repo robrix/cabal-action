@@ -13,3 +13,5 @@ RUN echo "deb http://downloads.haskell.org/debian stretch main" >> /etc/apt/sour
     apt-get autoremove -y && \
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*
+
+CMD ["bash"]
