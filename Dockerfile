@@ -5,9 +5,8 @@ ENV LANG=C.UTF-8 \
     PATH=/root/.cabal/bin:/opt/ghc/bin:$PATH
 
 RUN echo "deb http://downloads.haskell.org/debian stretch main" >> /etc/apt/sources.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com  --recv-keys BA3CBA3FFE22B574 && \
     apt-get update && \
-    apt-get install -y \
+    apt-get install -y --allow-unauthenticated \
       ghc-8.6.3 \
       cabal-install-2.4 && \
     apt-get autoremove -y && \
