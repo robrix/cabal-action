@@ -14,7 +14,10 @@ ENV LANG=C.UTF-8 \
     PATH=/root/.cabal/bin:/opt/ghc/bin:$PATH
 
 RUN apt-get update && \
-    apt-get install -y gnupg && \
+    apt-get install -y \
+      gnupg \
+      libtinfo-dev \
+      && \
     apt-get autoremove -y && \
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*
