@@ -29,6 +29,11 @@ RUN echo "deb http://downloads.haskell.org/debian stretch main" >> /etc/apt/sour
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*
 
+# Buggy versions of ld.bfd fail to link some Haskell packages: https://sourceware.org/bugzilla/show_bug.cgi?id=17689.
+# Gold is faster anyways and uses less RAM.
+RUN update-alternatives --install "/usr/bin/ld" "ld" "/usr/bin/ld.gold" 20 && \
+    update-alternatives --install "/usr/bin/ld" "ld" "/usr/bin/ld.bfd" 10
+
 COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
 
 COPY entrypoint.sh /entrypoint.sh
