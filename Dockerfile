@@ -29,6 +29,8 @@ RUN echo "deb http://downloads.haskell.org/debian stretch main" >> /etc/apt/sour
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*
 
+RUN cabal new-update
+
 COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
 
 COPY entrypoint.sh /entrypoint.sh
