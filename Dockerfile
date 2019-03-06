@@ -1,5 +1,14 @@
 FROM debian:stretch
 
+LABEL "name"="Cabal"
+LABEL "maintainer"="GitHub Actions <support+actions@github.com>"
+LABEL "version"="0.1.0"
+
+LABEL "com.github.actions.name"="Cabal"
+LABEL "com.github.actions.description"="Runs cabal"
+LABEL "com.github.actions.icon"="git-pull-request"
+LABEL "com.github.actions.color"="purple"
+
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     PATH=/root/.cabal/bin:/opt/ghc/bin:$PATH
@@ -20,4 +29,8 @@ RUN echo "deb http://downloads.haskell.org/debian stretch main" >> /etc/apt/sour
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*
 
-CMD ["bash"]
+COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
+
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
